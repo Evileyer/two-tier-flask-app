@@ -70,6 +70,12 @@ This project is intended for **learning and demonstration purposes** to gain han
 
 ---
 
+## 📌 Project Ownership Note
+
+This project is forked and extended from an open-source repository.
+All Azure AKS deployment, Helm configuration, Dockerization updates and documentation improvements were implemented by me.
+
+
 ## Author
 
 **Aneesh S**  
