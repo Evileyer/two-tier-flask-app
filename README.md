@@ -68,3 +68,12 @@ This project is intended for **learning and demonstration purposes** to gain han
 - Docker setup (local development): [README_docker.md](README_docker.md)
 - Kubernetes deployment details: [README_kubernetes.md](README_kubernetes.md)
 
+---
+
+## Author
+
+**Aneesh S**  
+GitHub: https://github.com/aneesh-siva  
+LinkedIn: www.linkedin.com/in/aneesh-siva-a958b4249
+
+
