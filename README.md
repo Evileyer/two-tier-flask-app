@@ -1,130 +1,63 @@
- 
-# Flask App with MySQL Docker Setup
+# Two-Tier Flask Application on Azure Kubernetes Service (AKS)
 
-This is a simple Flask app that interacts with a MySQL database. The app allows users to submit messages, which are then stored in the database and displayed on the frontend.
+This project demonstrates the deployment of a **two-tier web application** consisting of a **Flask web application (frontend/API)** and a **MySQL database (backend)** on **Azure Kubernetes Service (AKS)**.
 
-## Prerequisites
+The application allows users to submit messages, which are stored in a MySQL database and displayed on the frontend.
 
-Before you begin, make sure you have the following installed:
+> 🔹 This repository is based on a reference project and was extended and deployed on Azure AKS for learning and hands-on DevOps experience.
 
+---
+
+## 🧱 Architecture
+
+- **Frontend / API:** Flask
+- **Backend Database:** MySQL
+- **Containerization:** Docker
+- **Orchestration:** Kubernetes (AKS)
+- **Deployment:** Helm Charts
+- **Exposure:** Azure LoadBalancer
+
+---
+
+## 🚀 What I Implemented
+
+- Deployed a **two-tier application** on Azure Kubernetes Service
+- Created Kubernetes **Deployments and Services** for Flask and MySQL
+- Used **Helm** to manage Kubernetes manifests
+- Configured **service-based communication** between Flask and MySQL
+- Exposed the application externally using an **Azure LoadBalancer**
+- Debugged real-world issues like **service discovery and pod startup order**
+- Verified the application is accessible via browser
+
+---
+
+## 🛠️ Technologies Used
+
+- Flask (Python)
+- MySQL
 - Docker
-- Git (optional, for cloning the repository)
+- Kubernetes
+- Helm
+- Azure Kubernetes Service (AKS)
 
-## Setup
+---
 
-1. Clone this repository (if you haven't already):
+## 📸 Validation
 
-   ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   ```
+- Flask and MySQL pods running successfully
+- Database connectivity verified using Kubernetes service DNS
+- Application accessible via external IP provided by Azure LoadBalancer
 
-2. Navigate to the project directory:
+---
 
-   ```bash
-   cd your-repo-name
-   ```
+## 📚 Reference
 
-3. Create a `.env` file in the project directory to store your MySQL environment variables:
+This project is based on the following reference repository and was deployed and validated independently on Azure AKS:
 
-   ```bash
-   touch .env
-   ```
+https://github.com/LondheShubham153/two-tier-flask-app
 
-4. Open the `.env` file and add your MySQL configuration:
+---
 
-   ```
-   MYSQL_HOST=mysql
-   MYSQL_USER=your_username
-   MYSQL_PASSWORD=your_password
-   MYSQL_DB=your_database
-   ```
+## 📝 Note
 
-## Usage
-
-1. Start the containers using Docker Compose:
-
-   ```bash
-   docker-compose up --build
-   ```
-
-2. Access the Flask app in your web browser:
-
-   - Frontend: http://localhost
-   - Backend: http://localhost:5000
-
-3. Create the `messages` table in your MySQL database:
-
-   - Use a MySQL client or tool (e.g., phpMyAdmin) to execute the following SQL commands:
-   
-     ```sql
-     CREATE TABLE messages (
-         id INT AUTO_INCREMENT PRIMARY KEY,
-         message TEXT
-     );
-     ```
-
-4. Interact with the app:
-
-   - Visit http://localhost to see the frontend. You can submit new messages using the form.
-   - Visit http://localhost:5000/insert_sql to insert a message directly into the `messages` table via an SQL query.
-
-## Cleaning Up
-
-To stop and remove the Docker containers, press `Ctrl+C` in the terminal where the containers are running, or use the following command:
-
-```bash
-docker-compose down
-```
-
-## To run this two-tier application using  without docker-compose
-
-- First create a docker image from Dockerfile
-```bash
-docker build -t flaskapp .
-```
-
-- Now, make sure that you have created a network using following command
-```bash
-docker network create twotier
-```
-
-- Attach both the containers in the same network, so that they can communicate with each other
-
-i) MySQL container 
-```bash
-docker run -d \
-    --name mysql \
-    -v mysql-data:/var/lib/mysql \
-    --network=twotier \
-    -e MYSQL_DATABASE=mydb \
-    -e MYSQL_ROOT_PASSWORD=admin \
-    -p 3306:3306 \
-    mysql:5.7
-
-```
-ii) Backend container
-```bash
-docker run -d \
-    --name flaskapp \
-    --network=twotier \
-    -e MYSQL_HOST=mysql \
-    -e MYSQL_USER=root \
-    -e MYSQL_PASSWORD=admin \
-    -e MYSQL_DB=mydb \
-    -p 5000:5000 \
-    flaskapp:latest
-
-```
-
-## Notes
-
-- Make sure to replace placeholders (e.g., `your_username`, `your_password`, `your_database`) with your actual MySQL configuration.
-
-- This is a basic setup for demonstration purposes. In a production environment, you should follow best practices for security and performance.
-
-- Be cautious when executing SQL queries directly. Validate and sanitize user inputs to prevent vulnerabilities like SQL injection.
-
-- If you encounter issues, check Docker logs and error messages for troubleshooting.
-
-```
-
+This project is intended for **learning and demonstration purposes** to gain hands-on experience with **cloud-native application deployment and DevOps practices**.
