@@ -61,3 +61,10 @@ https://github.com/LondheShubham153/two-tier-flask-app
 ## 📝 Note
 
 This project is intended for **learning and demonstration purposes** to gain hands-on experience with **cloud-native application deployment and DevOps practices**.
+
+
+## 📂 Additional Documentation
+
+- Docker setup (local development): [README_docker.md](README_docker.md)
+- Kubernetes deployment details: [README_kubernetes.md](README_kubernetes.md)
+
